@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>APEX-09 TITAN // 40-Ton Heavy Industrial Robotics & Autonomous Fabrication Matrix</title>
+  <title>APEX 09 — Heavy Industrial Robotics &amp; Kinematic Systems</title>
   
-  <!-- Fonts -->
+  <!-- Fonts: Inter & JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
   
   <link rel="stylesheet" href="/src/style.css" />
 </head>
@@ -16,13 +16,12 @@
 
   <!-- Preloader Screen -->
   <div class="preloader-overlay" id="preloader">
-    <div class="loader-terminal liquid-glass">
-      <div class="loader-badge">SYSTEM INITIALIZATION // BAY 09</div>
-      <div class="loader-title">APEX-09 TITAN</div>
+    <div class="loader-terminal">
+      <div class="loader-brand">APEX 09</div>
       <div class="loader-bar-bg">
         <div class="loader-bar-fill" id="loader-fill"></div>
       </div>
-      <div class="loader-pct"><span id="loader-percent">0</span>% SYNCHRONIZING KINEMATIC DIGITAL TWIN</div>
+      <div class="loader-pct"><span id="loader-percent">0</span>% Digital Twin Sync</div>
     </div>
   </div>
 
@@ -31,153 +30,80 @@
     <canvas id="webgl-canvas"></canvas>
   </div>
 
-  <!-- Background Technical Grid Overlay -->
-  <div class="viewport-grid-overlay"></div>
-
-  <!-- Floating 3D Hotspots on the Robot -->
-  <div class="hotspot-marker" id="hs-core">
-    <div class="hotspot-ring"></div>
-    <div class="hotspot-card">
-      <div class="hotspot-title">PLASMA CORE REACTOR</div>
-      <div class="hotspot-desc">42 MW Solid-State Power Pack with cryogenic liquid helium jackets.</div>
-    </div>
-  </div>
-
-  <div class="hotspot-marker" id="hs-arm">
-    <div class="hotspot-ring"></div>
-    <div class="hotspot-card">
-      <div class="hotspot-title">6-AXIS CYCLOIDAL DRIVE</div>
-      <div class="hotspot-desc">12,000 Nm continuous joint torque with zero backlash harmonic reducers.</div>
-    </div>
-  </div>
-
-  <div class="hotspot-marker" id="hs-head">
-    <div class="hotspot-ring"></div>
-    <div class="hotspot-card">
-      <div class="hotspot-title">LIDAR SENSOR TURRET</div>
-      <div class="hotspot-desc">Dual 3D solid-state LiDAR array + multi-spectral stereo optical tracking.</div>
-    </div>
-  </div>
-
-  <div class="hotspot-marker" id="hs-hand">
-    <div class="hotspot-ring"></div>
-    <div class="hotspot-card">
-      <div class="hotspot-title">RAPID TOOL COUPLER</div>
-      <div class="hotspot-desc">High-voltage 20 kW fiber laser & 45-ton hydraulic clamp auto-coupling.</div>
-    </div>
-  </div>
-
-  <div class="hotspot-marker" id="hs-leg">
-    <div class="hotspot-ring"></div>
-    <div class="hotspot-card">
-      <div class="hotspot-title">HYDRO-PNEUMATIC BOGIE</div>
-      <div class="hotspot-desc">Multi-chamber shock dampening rated for 45,000 kg dynamic shock loads.</div>
-    </div>
-  </div>
-
-  <!-- Real-Time Telemetry HUD Corners -->
-  <div class="hud-frame">
-    <div class="hud-top-bar">
-      <div class="hud-telemetry-badge">
-        <span>STATION:</span>
-        <span class="val">BAY 09 // FOUNDRY DOCK</span>
-      </div>
-      <div class="hud-telemetry-badge">
-        <span>ACTIVE PROFILE:</span>
-        <span class="val">FOUNDRY FABRICATION</span>
-      </div>
-    </div>
-    <div class="hud-bottom-bar">
-      <div class="hud-telemetry-badge">
-        <span>HYDRAULIC PRESSURE:</span>
-        <span class="val" id="hud-psi">3,480 PSI</span>
-      </div>
-      <div class="hud-telemetry-badge">
-        <span>CORE TEMP:</span>
-        <span class="val" id="hud-temp">64.2°C [STABLE]</span>
-      </div>
-      <div class="hud-telemetry-badge">
-        <span>EDGE INFERENCE:</span>
-        <span class="val" id="hud-latency">1.18 ms</span>
-      </div>
-      <div class="hud-telemetry-badge">
-        <span>KINEMATIC LOAD:</span>
-        <span class="val" id="hud-load">42.8%</span>
-      </div>
-    </div>
-  </div>
+  <!-- Subtle Studio Vignette -->
+  <div class="studio-vignette"></div>
 
   <!-- Apple Liquid Glass Floating Header -->
   <header class="main-header">
     <nav class="nav-pill">
       <a href="#hero" class="brand-wrapper">
-        <div class="brand-logo">APEX<span class="brand-tag">//</span>09</div>
-        <div class="system-status-indicator">
-          <span class="pulse-dot"></span>
-          ONLINE // NOMINAL
-        </div>
+        <span class="brand-mark">APEX</span>
+        <span class="brand-sub">09</span>
+        <span class="status-indicator">
+          <span class="status-dot"></span>
+          Operational
+        </span>
       </a>
 
       <ul class="nav-links">
         <li><a href="#kinematics">Kinematics</a></li>
-        <li><a href="#autonomy">Edge Autonomy</a></li>
-        <li><a href="#end-effectors">Tool Matrix</a></li>
-        <li><a href="#harsh-env">Durability</a></li>
+        <li><a href="#autonomy">Perception</a></li>
+        <li><a href="#tooling">Tooling</a></li>
+        <li><a href="#durability">Durability</a></li>
         <li><a href="#specs">Specifications</a></li>
         <li><a href="#configurator">Configurator</a></li>
       </ul>
 
       <div class="nav-action">
-        <a href="#inquiry" class="btn-liquid-glass primary">Deploy Unit</a>
+        <a href="#requisition" class="btn-liquid-glass primary">Request Dossier</a>
       </div>
     </nav>
   </header>
 
-  <!-- Main Scrollable Story Content -->
+  <!-- Main Content Flow (Strict Alternating Layout) -->
   <main class="content-wrapper">
 
     <!-- 00 // HERO SECTION -->
     <section class="hero-section" id="hero">
       <div class="hero-content">
-        <div class="section-tag">TIER-1 HEAVY INDUSTRY // AUTONOMOUS ROBOTICS</div>
-        <h1 class="section-heading">
-          APEX-09 TITAN<br />
-          <span class="highlight-amber">40-TON ROBOTIC FABRICATION MATRIX</span>
+        <div class="section-eyebrow">Heavy Fabrication Kinematics</div>
+        <h1 class="hero-title">
+          APEX 09
         </h1>
-        <p class="section-lead">
-          Engineered for extreme foundry environments, heavy forge manipulation, continuous 20 kW laser cladding, and zero-downtime manufacturing lines. Powered by real-time NVIDIA Isaac™ multi-modal edge perception.
+        <p class="hero-subtext">
+          A 40-ton autonomous kinematic manipulator engineered for heavy forge operations, extreme foundries, and continuous 20 kW laser cladding.
         </p>
 
         <div class="hero-actions">
-          <a href="#configurator" class="btn-liquid-glass primary">Configure Deployment</a>
-          <a href="#kinematics" class="btn-liquid-glass">Explore Kinematics ↓</a>
+          <a href="#configurator" class="btn-liquid-glass primary">Configure System</a>
+          <a href="#kinematics" class="btn-liquid-glass secondary">System Architecture ↓</a>
         </div>
       </div>
 
-      <!-- Hero Telemetry Metrics Strip -->
-      <div class="hero-telemetry-strip">
-        <div class="telemetry-card liquid-glass">
-          <div class="telemetry-label">MAX KINEMATIC PAYLOAD <span>[FULL EXTENSION]</span></div>
-          <div class="telemetry-value">45,000 <small style="font-size: 1rem; color: var(--accent-amber);">KG</small></div>
-          <div class="telemetry-subtext">Continuous rated working capacity</div>
+      <!-- Hero Minimalist Spec Bar (Clean architectural data) -->
+      <div class="hero-spec-strip">
+        <div class="spec-col">
+          <div class="spec-num">45 <span class="spec-unit">t</span></div>
+          <div class="spec-name">Rated Payload Capacity</div>
+          <div class="spec-detail">Continuous full-reach working load</div>
         </div>
 
-        <div class="telemetry-card liquid-glass">
-          <div class="telemetry-label">POSITIONAL REPEATABILITY <span>[ISO 9283]</span></div>
-          <div class="telemetry-value">±0.02 <small style="font-size: 1rem; color: var(--accent-cyan);">MM</small></div>
-          <div class="telemetry-subtext">Laser interferometry calibrated</div>
+        <div class="spec-col">
+          <div class="spec-num">±0.02 <span class="spec-unit">mm</span></div>
+          <div class="spec-name">Positional Repeatability</div>
+          <div class="spec-detail">ISO 9283 laser interferometry certified</div>
         </div>
 
-        <div class="telemetry-card liquid-glass">
-          <div class="telemetry-label">PERCEPTION COMPUTE <span>[DUAL ORIN]</span></div>
-          <div class="telemetry-value">275 <small style="font-size: 1rem; color: var(--accent-green);">TOPS</small></div>
-          <div class="telemetry-subtext">1.18 ms edge evasion latency</div>
+        <div class="spec-col">
+          <div class="spec-num">12,000 <span class="spec-unit">Nm</span></div>
+          <div class="spec-name">Peak Joint Torque</div>
+          <div class="spec-detail">Planetary cycloidal gearhead reducers</div>
         </div>
 
-        <div class="telemetry-card liquid-glass">
-          <div class="telemetry-label">INGRESS & ENVIRONMENT <span>[FOUNDRY CERT]</span></div>
-          <div class="telemetry-value">IP69K <small style="font-size: 1rem; color: var(--accent-amber);">HOT</small></div>
-          <div class="telemetry-subtext">1,450°C slag & liquid metal seal</div>
+        <div class="spec-col">
+          <div class="spec-num">IP69K <span class="spec-unit">Hot</span></div>
+          <div class="spec-name">Foundry Sealed</div>
+          <div class="spec-detail">1,450°C slag and molten splatter barrier</div>
         </div>
       </div>
     </section>
@@ -186,316 +112,229 @@
     <!-- 01 // KINEMATICS SECTION (ALIGNED RIGHT) -->
     <section class="section-container align-right" id="kinematics">
       <div class="section-content">
-        <div class="section-tag">01 // KINEMATICS & DRIVETRAIN</div>
-        <h2 class="section-heading">
-          6-AXIS ARTICULATED<br />
-          <span class="highlight-amber">HYDRAULIC-CYCLOIDAL POWER</span>
+        <div class="section-eyebrow">01 / Drivetrain</div>
+        <h2 class="section-title">
+          6-Axis Articulated<br />
+          Hydraulic Power.
         </h2>
-        <p class="section-lead">
-          Combining ultra-stiff planetary cycloidal reducers with electro-hydraulic booster pistons, the APEX-09 delivers up to 12,000 Nm continuous joint torque without thermal degradation.
+        <p class="section-desc">
+          Integrating high-torque planetary cycloidal drives with electro-hydraulic booster pistons, APEX 09 maintains structural stiffness and precise micro-positioning under continuous multi-ton gravitational loading.
         </p>
 
-        <div class="feature-glass-card liquid-glass">
-          <div class="feature-header">
-            <span class="feature-title">Planetary Cycloidal Reducers</span>
-            <span class="feature-metric">12,000 NM</span>
+        <div class="spec-list">
+          <div class="spec-row">
+            <span class="row-label">Joint Transmission</span>
+            <span class="row-value">Planetary Cycloidal Reducers</span>
           </div>
-          <p class="feature-desc">Zero-backlash tooth engagement distributes peak shockloads across 70% of gear contact surfaces simultaneously.</p>
-        </div>
-
-        <div class="feature-glass-card liquid-glass">
-          <div class="feature-header">
-            <span class="feature-title">Active Vibration Suppression</span>
-            <span class="feature-metric">&lt; 0.05 MM FLUTTER</span>
+          <div class="spec-row">
+            <span class="row-label">Vibration Flutter</span>
+            <span class="row-value">&lt; 0.04 mm Active Suppression</span>
           </div>
-          <p class="feature-desc">Integrated piezo-electric micro-actuators counteract structural harmonic oscillations during rapid high-mass directional changes.</p>
-        </div>
-
-        <div class="feature-glass-card liquid-glass">
-          <div class="feature-header">
-            <span class="feature-title">Direct-Drive Optical Encoders</span>
-            <span class="feature-metric">26-BIT ABSOLUTE</span>
+          <div class="spec-row">
+            <span class="row-label">Encoder Resolution</span>
+            <span class="row-value">26-Bit Absolute Optical (67M Counts/Rev)</span>
           </div>
-          <p class="feature-desc">67 million counts per revolution for unmatched precision positioning under extreme gravitational loading.</p>
+          <div class="spec-row">
+            <span class="row-label">Hydraulic Operating Pressure</span>
+            <span class="row-value">350 Bar (5,076 PSI) Closed Loop</span>
+          </div>
         </div>
       </div>
     </section>
 
 
-    <!-- 02 // EDGE AUTONOMY SECTION (ALIGNED LEFT) -->
+    <!-- 02 // PERCEPTION & EDGE AUTONOMY (ALIGNED LEFT) -->
     <section class="section-container align-left" id="autonomy">
       <div class="section-content">
-        <div class="section-tag cyan">02 // AUTONOMOUS INTELLIGENCE</div>
-        <h2 class="section-heading">
-          NVIDIA ISAAC ORIN™<br />
-          <span class="highlight-cyan">REAL-TIME MULTI-MODAL PERCEPTION</span>
+        <div class="section-eyebrow">02 / Intelligence</div>
+        <h2 class="section-title">
+          Multi-Modal Edge<br />
+          Perception.
         </h2>
-        <p class="section-lead">
-          Foundries and heavy manufacturing plants are constantly changing. Dual Jetson AGX Orin Industrial SoCs fuse 16 HDR multi-spectral cameras, 3D solid-state LiDAR, and companion drone telemetry at 120 FPS.
+        <p class="section-desc">
+          Foundries are dynamic, unforgiving environments. Dual NVIDIA Jetson AGX Orin Industrial compute units fuse solid-state 3D LiDAR, 16 optical cameras, and aerial drone telemetry at 120 FPS for sub-2ms obstacle avoidance.
         </p>
 
-        <div class="feature-glass-card liquid-glass">
-          <div class="feature-header">
-            <span class="feature-title">Dynamic Path Planning</span>
-            <span class="feature-metric">1.18 MS RESPONSE</span>
+        <div class="spec-list">
+          <div class="spec-row">
+            <span class="row-label">Edge Inference</span>
+            <span class="row-value">275 TOPS Neural Compute</span>
           </div>
-          <p class="feature-desc">GPU-accelerated trajectory generation prevents collisions with overhead cranes, automated guided vehicles (AGVs), and human operators.</p>
-        </div>
-
-        <div class="feature-glass-card liquid-glass">
-          <div class="feature-header">
-            <span class="feature-title">Aerial Companion Drone Link</span>
-            <span class="feature-metric">5.8 GHZ LOW-LATENCY</span>
+          <div class="spec-row">
+            <span class="row-label">Trajectory Latency</span>
+            <span class="row-value">1.18 ms Closed-Loop Feedback</span>
           </div>
-          <p class="feature-desc">An autonomous aerial scout hovers overhead, providing wide-angle gantry occlusion inspection and thermal weld seam auditing.</p>
-        </div>
-
-        <div class="feature-glass-card liquid-glass">
-          <div class="feature-header">
-            <span class="feature-title">ISO 10218-1 Safety Interlock</span>
-            <span class="feature-metric">CAT 4 / PLe CERTIFIED</span>
+          <div class="spec-row">
+            <span class="row-label">Aerial Drone Link</span>
+            <span class="row-value">Dedicated 5.8 GHz Low-Latency Telemetry</span>
           </div>
-          <p class="feature-desc">Hardware-isolated dual channel safety supervisor instantly clamps hydraulic locks upon safety perimeter boundary breach.</p>
+          <div class="spec-row">
+            <span class="row-label">Safety Compliance</span>
+            <span class="row-value">ISO 10218-1 &amp; ISO 13849-1 Cat 4 PLe</span>
+          </div>
         </div>
       </div>
     </section>
 
 
-    <!-- 03 // MODULAR END-EFFECTORS (ALIGNED RIGHT) -->
-    <section class="section-container align-right" id="end-effectors">
+    <!-- 03 // MODULAR TOOLING (ALIGNED RIGHT) -->
+    <section class="section-container align-right" id="tooling">
       <div class="section-content">
-        <div class="section-tag">03 // RAPID MODULAR TOOLING</div>
-        <h2 class="section-heading">
-          TOOL MATRIX<br />
-          <span class="highlight-amber">3.5-SECOND RAPID COUPLING</span>
+        <div class="section-eyebrow">03 / Fabrication</div>
+        <h2 class="section-title">
+          Rapid Modular<br />
+          Tool Matrix.
         </h2>
-        <p class="section-lead">
-          The APEX-09 adapts instantly to distinct stages of metalworking and fabrication with an auto-aligning pneumatic lock collar carrying 400A power and optical communication lines.
+        <p class="section-desc">
+          An automatic pneumatic lock collar with high-current electrical and optical interconnects enables full toolhead swaps in under 3.5 seconds.
         </p>
 
-        <!-- Interactive Tool Switcher -->
-        <div class="tool-switcher-container">
-          <button class="tool-option-btn active" data-tool="laser">
-            <div>
-              <div class="tool-name">20 kW Fiber Laser Cladding &amp; Weld Head</div>
-              <div style="font-size: 0.78rem; color: var(--text-muted); margin-top: 2px;">Continuous powder deposition &amp; deep-penetration structural seam joining</div>
-            </div>
-            <span class="tool-badge">PRIMARY</span>
-          </button>
+        <div class="tool-matrix-box">
+          <div class="tool-pill-group">
+            <button class="tool-pill active" data-tool="laser">20 kW Fiber Laser</button>
+            <button class="tool-pill" data-tool="clamp">45-Ton Forging Clamp</button>
+            <button class="tool-pill" data-tool="plasma">HD Plasma Torch</button>
+            <button class="tool-pill" data-tool="milling">5-Axis Spindle</button>
+          </div>
 
-          <button class="tool-option-btn" data-tool="gripper">
-            <div>
-              <div class="tool-name">45-Ton High-Force Forging Clamp</div>
-              <div style="font-size: 0.78rem; color: var(--text-muted); margin-top: 2px;">Synchronized servo-hydraulic dual-jaw grip for red-hot steel ingots</div>
+          <div class="tool-detail-card" id="tool-detail">
+            <div class="tool-detail-name" id="tool-name">20 kW Fiber Laser Cladding Head</div>
+            <p class="tool-detail-desc" id="tool-desc">
+              Continuous powder-feed laser deposition and deep-penetration structural seam joining. Active optical pyrometry adjusts power in real-time.
+            </p>
+            <div class="tool-meta" id="tool-meta">
+              <span>Wavelength: 1,070 nm</span>
+              <span>Duty Cycle: 100% Continuous</span>
             </div>
-            <span class="tool-badge">HEAVY</span>
-          </button>
-
-          <button class="tool-option-btn" data-tool="plasma">
-            <div>
-              <div class="tool-name">High-Definition Plasma Arc Torch</div>
-              <div style="font-size: 0.78rem; color: var(--text-muted); margin-top: 2px;">Cuts 120 mm armor-grade alloy plate with sub-degree bevel precision</div>
-            </div>
-            <span class="tool-badge">CUTTING</span>
-          </button>
-
-          <button class="tool-option-btn" data-tool="milling">
-            <div>
-              <div class="tool-name">High-Torque 5-Axis Milling Spindle</div>
-              <div style="font-size: 0.78rem; color: var(--text-muted); margin-top: 2px;">30,000 RPM precision finishing for turbine housings and valve seats</div>
-            </div>
-            <span class="tool-badge">FINISHING</span>
-          </button>
+          </div>
         </div>
       </div>
     </section>
 
 
-    <!-- 04 // HARSH ENVIRONMENTS (ALIGNED LEFT) -->
-    <section class="section-container align-left" id="harsh-env">
+    <!-- 04 // DURABILITY (ALIGNED LEFT) -->
+    <section class="section-container align-left" id="durability">
       <div class="section-content">
-        <div class="section-tag cyan">04 // FOUNDRY DEFENSE</div>
-        <h2 class="section-heading">
-          BUILT FOR FOUNDRY,<br />
-          <span class="highlight-cyan">SLAG, CRYO &amp; RADIATION</span>
+        <div class="section-eyebrow">04 / Resilience</div>
+        <h2 class="section-title">
+          Foundry &amp; Thermal<br />
+          Shielding.
         </h2>
-        <p class="section-lead">
-          Tested against continuous 1,450°C molten blast splatter, abrasive silica grit, and cryogenic washdowns. Internal nitrogen pressurization ensures positive outward pressure against particulate contamination.
+        <p class="section-desc">
+          Engineered for red-hot molten splatter, abrasive silica grit, and thermal cycling from -50°C to +1,450°C. Pressurized nitrogen purging maintains positive internal cavity pressure against abrasive particulates.
         </p>
 
-        <div class="feature-glass-card liquid-glass">
-          <div class="feature-header">
-            <span class="feature-title">Pressurized Nitrogen Purge</span>
-            <span class="feature-metric">0.8 BAR POSITIVE</span>
+        <div class="spec-list">
+          <div class="spec-row">
+            <span class="row-label">Internal Atmosphere</span>
+            <span class="row-value">0.8 Bar Positive Nitrogen Purge</span>
           </div>
-          <p class="feature-desc">Active nitrogen gas mantle prevents airborne foundry dust from penetrating rotary mechanical seals.</p>
-        </div>
-
-        <div class="feature-glass-card liquid-glass">
-          <div class="feature-header">
-            <span class="feature-title">Thermal Ceramic Armor Plating</span>
-            <span class="feature-metric">1,450°C TOLERANCE</span>
+          <div class="spec-row">
+            <span class="row-label">Thermal Barrier</span>
+            <span class="row-value">Zirconia Ceramic Armor Plating</span>
           </div>
-          <p class="feature-desc">Zirconia-matrix composite heat shields deflect slag droplets and radiative crucible blasts.</p>
-        </div>
-
-        <div class="feature-glass-card liquid-glass">
-          <div class="feature-header">
-            <span class="feature-title">Cryogenic Coolant Jacketing</span>
-            <span class="feature-metric">CLOSED-LOOP GLYCOL</span>
+          <div class="spec-row">
+            <span class="row-label">Actuator Cooling</span>
+            <span class="row-value">Microchannel Glycol Heat Exchangers</span>
           </div>
-          <p class="feature-desc">Microchannel cooling manifolds inside each cycloidal actuator ensure thermal equilibrium during round-the-clock 24/7 duty cycles.</p>
+          <div class="spec-row">
+            <span class="row-label">Ingress Certification</span>
+            <span class="row-value">IP69K High-Pressure Submersion</span>
+          </div>
         </div>
       </div>
     </section>
 
 
-    <!-- 05 // SPECIFICATION MATRIX (FULL WIDTH) -->
+    <!-- 05 // SPECIFICATIONS MATRIX (FULL WIDTH) -->
     <section class="section-container align-center" id="specs">
-      <div class="specs-matrix-wrapper">
-        <div class="section-tag">05 // TECHNICAL MATRIX</div>
-        <h2 class="section-heading">
-          APEX-09 TITAN<br />
-          <span class="highlight-amber">FULL ENGINEERING SPECIFICATIONS</span>
-        </h2>
-        <p class="section-lead" style="margin: 0 auto 30px auto; max-width: 650px;">
-          Certified under ISO 9001 and ISO 13849-1 Cat 4 PLe machinery safety directives. Every unit is subjected to an exhaustive 168-hour continuous stress burn-in prior to deployment.
-        </p>
+      <div class="specs-wrapper">
+        <div class="section-eyebrow">05 / Engineering Data</div>
+        <h2 class="section-title" style="margin-bottom: 40px;">System Specifications.</h2>
 
-        <div class="specs-grid">
-          <div class="spec-box liquid-glass">
-            <div class="spec-category">Kinematic Envelope</div>
-            <div class="spec-main-val">7.85 <small style="font-size: 1.2rem;">M</small></div>
-            <div class="spec-sub-val">Spherical Working Radius</div>
-            <p class="spec-explanation">Full 360-degree base rotation with ±135° overhead articulation allowing ceiling-reach foundry operations.</p>
+        <div class="specs-table-grid">
+          <div class="table-block">
+            <div class="block-title">Kinematics &amp; Motion</div>
+            <div class="table-line"><span>Degrees of Freedom</span><span>6 Rotary Axes</span></div>
+            <div class="table-line"><span>Spherical Reach</span><span>7.85 m</span></div>
+            <div class="table-line"><span>Base Rotation</span><span>360° Continuous</span></div>
+            <div class="table-line"><span>Max Wrist Velocity</span><span>140° / sec</span></div>
           </div>
 
-          <div class="spec-box liquid-glass">
-            <div class="spec-category">Payload &amp; Dynamic Torque</div>
-            <div class="spec-main-val">45.0 <small style="font-size: 1.2rem;">TONS</small></div>
-            <div class="spec-sub-val">Maximum Lift &amp; Manipulate</div>
-            <p class="spec-explanation">12,000 Nm continuous wrist joint torque with emergency 22,000 Nm hydraulic break-out clamp force.</p>
+          <div class="table-block">
+            <div class="block-title">Payload &amp; Structural</div>
+            <div class="table-line"><span>Operating Weight</span><span>38,400 kg</span></div>
+            <div class="table-line"><span>Rated Payload</span><span>45,000 kg</span></div>
+            <div class="table-line"><span>Emergency Clamp Force</span><span>22,000 Nm</span></div>
+            <div class="table-line"><span>Mounting Interface</span><span>Foundry Pad / 18m Rail</span></div>
           </div>
 
-          <div class="spec-box liquid-glass">
-            <div class="spec-category">Positional Accuracy</div>
-            <div class="spec-main-val">±0.02 <small style="font-size: 1.2rem;">MM</small></div>
-            <div class="spec-sub-val">Bidirectional Repeatability</div>
-            <p class="spec-explanation">Sub-millimeter precision enabled by 26-bit optical encoders and real-time kinematic thermal compensation.</p>
-          </div>
-
-          <div class="spec-box liquid-glass">
-            <div class="spec-category">Power &amp; Hydraulics</div>
-            <div class="spec-main-val">42.0 <small style="font-size: 1.2rem;">KW</small></div>
-            <div class="spec-sub-val">Nominal Operating Draw</div>
-            <p class="spec-explanation">Integrated electro-hydraulic power pack operates at 350 bar (5,076 PSI) with regenerative energy recovery.</p>
-          </div>
-
-          <div class="spec-box liquid-glass">
-            <div class="spec-category">Sensor Architecture</div>
-            <div class="spec-main-val">120 <small style="font-size: 1.2rem;">FPS</small></div>
-            <div class="spec-sub-val">Multi-Spectral Perception</div>
-            <p class="spec-explanation">16 HDR optical cameras + dual solid-state LiDAR + 6-axis wrist force-torque telemetry.</p>
-          </div>
-
-          <div class="spec-box liquid-glass">
-            <div class="spec-category">Industrial Fieldbus</div>
-            <div class="spec-main-val">1.0 <small style="font-size: 1.2rem;">GBPS</small></div>
-            <div class="spec-sub-val">Deterministic EtherCAT &amp; OPC UA</div>
-            <p class="spec-explanation">Sub-microsecond synchronization with Siemens, Beckhoff, and Rockwell Automation plant SCADA infrastructures.</p>
+          <div class="table-block">
+            <div class="block-title">Power &amp; Communications</div>
+            <div class="table-line"><span>Nominal Power Draw</span><span>42 kW</span></div>
+            <div class="table-line"><span>Peak Draw (Clamping)</span><span>110 kW</span></div>
+            <div class="table-line"><span>Fieldbus Protocol</span><span>Deterministic EtherCAT &amp; OPC UA</span></div>
+            <div class="table-line"><span>SCADA Compatibility</span><span>Siemens, Beckhoff, Rockwell</span></div>
           </div>
         </div>
       </div>
     </section>
 
 
-    <!-- 06 // INTERACTIVE DEPLOYMENT CONFIGURATOR -->
+    <!-- 06 // DEPLOYMENT CONFIGURATOR -->
     <section class="section-container align-center" id="configurator">
-      <div class="configurator-wrapper">
-        <!-- Left: Options Controls -->
-        <div class="config-options-col">
-          <div class="config-group liquid-glass">
-            <div class="config-group-title">
-              <span>01. MOUNTING CHASSIS ARCHITECTURE</span>
-            </div>
-            <div class="config-pills" id="cfg-chassis">
-              <button class="config-pill active" data-val="static" data-price="0" data-time="0">FOUNDRY PAD (STATIC)</button>
-              <button class="config-pill" data-val="rail" data-price="180000" data-time="2">LINEAR GANTRY RAIL (+18M)</button>
-              <button class="config-pill" data-val="tracked" data-price="340000" data-time="4">HEAVY TRACKED AGV BASE</button>
-            </div>
-          </div>
+      <div class="config-console">
+        <div class="section-eyebrow">06 / Configurator</div>
+        <h2 class="section-title" style="margin-bottom: 32px;">Configure Deployment.</h2>
 
-          <div class="config-group liquid-glass">
-            <div class="config-group-title">
-              <span>02. PRIMARY TOOLING MODULE</span>
-            </div>
-            <div class="config-pills" id="cfg-tool">
-              <button class="config-pill active" data-val="laser" data-price="220000" data-time="1">20 KW FIBER LASER WELD HEAD</button>
-              <button class="config-pill" data-val="clamp" data-price="140000" data-time="1">45-TON FORGING CLAMP</button>
-              <button class="config-pill" data-val="hybrid" data-price="390000" data-time="3">DUAL LASER + CLAMP HYBRID</button>
-            </div>
-          </div>
-
-          <div class="config-group liquid-glass">
-            <div class="config-group-title">
-              <span>03. AUTONOMY &amp; SENSOR PACKAGE</span>
-            </div>
-            <div class="config-pills" id="cfg-ai">
-              <button class="config-pill active" data-val="orin" data-price="120000" data-time="1">DUAL NVIDIA ISAAC ORIN + LIDAR</button>
-              <button class="config-pill" data-val="swarm" data-price="240000" data-time="2">ORIN + AERIAL DRONE SCOUT LINK</button>
-            </div>
-          </div>
-
-          <div class="config-group liquid-glass">
-            <div class="config-group-title">
-              <span>04. SERVICE &amp; WARRANTY TIER</span>
-            </div>
-            <div class="config-pills" id="cfg-service">
-              <button class="config-pill active" data-val="standard" data-price="50000" data-time="0">ENTERPRISE 3-YR SLA (4H REPAIR)</button>
-              <button class="config-pill" data-val="critical" data-price="110000" data-time="0">MISSION CRITICAL 5-YR UNLIMITED</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Right: Real-time Config Summary & Price -->
-        <div class="config-summary-col liquid-glass">
-          <div>
-            <div class="summary-headline">SYSTEM SPECIFICATION SUMMARY</div>
-            <div class="summary-title" id="summary-model-title">APEX-09 TITAN // FOUNDRY EDITION</div>
-
-            <div class="summary-line-item">
-              <span class="label">Base Chassis</span>
-              <span class="value" id="summary-chassis">Foundry Heavy Pad</span>
-            </div>
-
-            <div class="summary-line-item">
-              <span class="label">End-Effector System</span>
-              <span class="value" id="summary-tool">20 kW Laser Cladding</span>
-            </div>
-
-            <div class="summary-line-item">
-              <span class="label">Autonomous Perception</span>
-              <span class="value" id="summary-ai">Dual Orin + Solid-State LiDAR</span>
-            </div>
-
-            <div class="summary-line-item">
-              <span class="label">Estimated Delivery Lead Time</span>
-              <span class="value" id="summary-time" style="color: var(--accent-cyan);">12 WEEKS</span>
-            </div>
-
-            <div class="summary-line-item">
-              <span class="label">Commissioning Location</span>
-              <span class="value">On-Site Turnkey Factory Integration</span>
-            </div>
-          </div>
-
-          <div>
-            <div class="summary-price-box">
-              <div>
-                <div style="font-size: 0.75rem; color: var(--text-muted); font-family: var(--font-mono);">TOTAL SYSTEM INVESTMENT</div>
-                <div class="price-number" id="summary-total">$1,640,000</div>
+        <div class="config-grid">
+          <!-- Selection Controls -->
+          <div class="config-controls">
+            <div class="option-section">
+              <div class="option-title">Chassis Architecture</div>
+              <div class="option-buttons" id="opt-chassis">
+                <button class="opt-btn active" data-val="static" data-price="0" data-time="0">Foundry Pad (Static)</button>
+                <button class="opt-btn" data-val="rail" data-price="180000" data-time="2">Linear Gantry Rail (+18m)</button>
+                <button class="opt-btn" data-val="tracked" data-price="340000" data-time="4">Tracked AGV Base</button>
               </div>
-              <a href="#inquiry" class="btn-liquid-glass primary" id="btn-lock-config">Lock Specification</a>
+            </div>
+
+            <div class="option-section">
+              <div class="option-title">Primary Tooling Package</div>
+              <div class="option-buttons" id="opt-tool">
+                <button class="opt-btn active" data-val="laser" data-price="220000" data-time="1">20 kW Fiber Laser</button>
+                <button class="opt-btn" data-val="clamp" data-price="140000" data-time="1">45-Ton Forging Clamp</button>
+                <button class="opt-btn" data-val="hybrid" data-price="390000" data-time="3">Dual Laser + Clamp Hybrid</button>
+              </div>
+            </div>
+
+            <div class="option-section">
+              <div class="option-title">Perception &amp; Autonomy</div>
+              <div class="option-buttons" id="opt-ai">
+                <button class="opt-btn active" data-val="orin" data-price="120000" data-time="1">Dual Jetson AGX Orin + LiDAR</button>
+                <button class="opt-btn" data-val="drone" data-price="240000" data-time="2">Orin + Aerial Drone Link</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Live Specification Summary -->
+          <div class="config-summary-card">
+            <div class="summary-header">System Specification</div>
+            <div class="summary-model">APEX 09 — Turnkey Package</div>
+
+            <div class="summary-rows">
+              <div class="s-row"><span>Chassis</span><strong id="sum-chassis">Foundry Pad (Static)</strong></div>
+              <div class="s-row"><span>Tooling</span><strong id="sum-tool">20 kW Fiber Laser</strong></div>
+              <div class="s-row"><span>Autonomy</span><strong id="sum-ai">Dual Jetson AGX Orin + LiDAR</strong></div>
+              <div class="s-row"><span>Lead Time</span><strong id="sum-time" style="color: var(--accent-amber);">11 Weeks</strong></div>
+            </div>
+
+            <div class="summary-footer">
+              <div>
+                <div class="price-label">Turnkey Investment</div>
+                <div class="price-val" id="sum-total">$1,590,000</div>
+              </div>
+              <a href="#requisition" class="btn-liquid-glass primary">Lock Requisition</a>
             </div>
           </div>
         </div>
@@ -503,40 +342,39 @@
     </section>
 
 
-    <!-- 07 // DEPLOYMENT INQUIRY FORM (ALIGNED RIGHT) -->
-    <section class="section-container align-right" id="inquiry">
+    <!-- 07 // ENTERPRISE REQUISITION FORM (ALIGNED RIGHT) -->
+    <section class="section-container align-right" id="requisition">
       <div class="section-content">
-        <div class="inquiry-card liquid-glass">
-          <div class="section-tag">06 // DEPLOYMENT REQUEST</div>
-          <h2 class="section-heading" style="font-size: 2.2rem;">
-            SCHEDULE FOUNDRY PILOT<br />
-            <span class="highlight-amber">ON-SITE FEASIBILITY AUDIT</span>
+        <div class="requisition-card">
+          <div class="section-eyebrow">07 / Requisition</div>
+          <h2 class="section-title" style="font-size: 2.2rem;">
+            Initiate Foundry Pilot.
           </h2>
-          <p class="section-lead" style="font-size: 0.95rem; margin-bottom: 20px;">
-            Our robotics deployment engineers will review your plant CAD layout, compute kinematic reach envelope models, and deliver an exact ROI and cycle-time guarantee within 48 hours.
+          <p class="section-desc" style="margin-bottom: 24px;">
+            Submit your facility parameters. Our robotics engineering team will review your CAD layout and compute kinematic reach envelopes within 48 hours.
           </p>
 
-          <form class="inquiry-form" id="deployment-form">
-            <div class="form-field">
-              <label>ENTERPRISE FACILITY NAME</label>
-              <input type="text" class="form-input" placeholder="e.g. Thyssenkrupp Steel Plant 4" required />
+          <form class="requisition-form" id="pilot-form">
+            <div class="form-row">
+              <label>Facility / Company Name</label>
+              <input type="text" class="input-field" placeholder="e.g. ArcelorMittal Plant 3" required />
             </div>
 
-            <div class="form-field">
-              <label>CONTACT WORK EMAIL</label>
-              <input type="email" class="form-input" placeholder="director.automation@enterprise.com" required />
+            <div class="form-row">
+              <label>Work Email</label>
+              <input type="email" class="input-field" placeholder="automation.lead@enterprise.com" required />
             </div>
 
-            <div class="form-field">
-              <label>FABRICATION PROCESS CATEGORY</label>
-              <input type="text" class="form-input" placeholder="Heavy Forging / Laser Seam Cladding / Plate Cutting" required />
+            <div class="form-row">
+              <label>Process Category</label>
+              <input type="text" class="input-field" placeholder="Heavy Forging / Laser Cladding / Heavy Machining" required />
             </div>
 
-            <button type="submit" class="btn-liquid-glass primary" style="width: 100%; margin-top: 10px;">
-              Submit Deployment Inquiry →
+            <button type="submit" class="btn-liquid-glass primary" style="width: 100%; margin-top: 8px;">
+              Submit Engineering Inquiry →
             </button>
-            <div id="form-feedback" style="display: none; font-size: 0.85rem; color: var(--accent-green); text-align: center; margin-top: 8px;">
-              ✓ Request received. Dispatching kinematic engineering dossier.
+            <div class="form-success" id="form-success" style="display: none;">
+              ✓ Requisition received. An application engineer will contact you shortly.
             </div>
           </form>
         </div>
@@ -546,58 +384,47 @@
   </main>
 
 
-  <!-- Industrial Site Footer -->
+  <!-- Minimalist Enterprise Footer -->
   <footer class="site-footer">
-    <div class="footer-top">
+    <div class="footer-inner">
       <div class="footer-brand">
-        <h4>APEX-09 TITAN // HEAVY ROBOTICS</h4>
-        <p>
-          Next-generation autonomous kinematic manufacturing systems engineered for foundry environments, high-mass aerospace tooling, and extreme automated continuous fabrication.
+        <div class="brand-line">APEX 09</div>
+        <p class="brand-desc">
+          High-mass autonomous kinematics for heavy industry, foundry fabrications, and extreme thermal manufacturing.
         </p>
       </div>
 
-      <div class="footer-col">
-        <h5>SYSTEM DIRECTIVES</h5>
-        <ul class="footer-links">
-          <li><a href="#kinematics">Cycloidal Kinematics</a></li>
-          <li><a href="#autonomy">Orin Edge SLAM</a></li>
-          <li><a href="#end-effectors">Modular Tool Matrix</a></li>
-          <li><a href="#harsh-env">Thermal Ingress Seals</a></li>
-          <li><a href="#specs">Engineering Specs</a></li>
-        </ul>
+      <div class="footer-nav-col">
+        <div class="col-title">Systems</div>
+        <a href="#kinematics">Kinematic Drivetrain</a>
+        <a href="#autonomy">Orin Edge SLAM</a>
+        <a href="#tooling">Tooling Matrix</a>
+        <a href="#durability">Thermal Defense</a>
       </div>
 
-      <div class="footer-col">
-        <h5>SAFETY &amp; COMPLIANCE</h5>
-        <ul class="footer-links">
-          <li><a href="#specs">ISO 10218-1 Industrial</a></li>
-          <li><a href="#specs">ISO 13849-1 Cat 4 PLe</a></li>
-          <li><a href="#specs">CE Machinery Directive</a></li>
-          <li><a href="#specs">UL 1740 Robot Safety</a></li>
-          <li><a href="#specs">ATEX Zone 22 Dust Cert</a></li>
-        </ul>
+      <div class="footer-nav-col">
+        <div class="col-title">Standards</div>
+        <span>ISO 10218-1 Robotics</span>
+        <span>ISO 13849-1 Cat 4 PLe</span>
+        <span>CE Machinery Directive</span>
+        <span>UL 1740 Machine Safety</span>
       </div>
 
-      <div class="footer-col">
-        <h5>GLOBAL OPERATIONS</h5>
-        <ul class="footer-links">
-          <li><a href="#inquiry">Munich Foundry Lab</a></li>
-          <li><a href="#inquiry">Tokyo Advanced Robotics</a></li>
-          <li><a href="#inquiry">Detroit Assembly Center</a></li>
-          <li><a href="#inquiry">Documentation &amp; CAD</a></li>
-          <li><a href="#inquiry">Emergency Telemetry 24/7</a></li>
-        </ul>
+      <div class="footer-nav-col">
+        <div class="col-title">Engineering</div>
+        <a href="#requisition">Technical Dossier</a>
+        <a href="#configurator">Configurator</a>
+        <a href="#requisition">Facility CAD Review</a>
+        <span>Direct Engineering Support</span>
       </div>
     </div>
 
-    <div class="footer-bottom">
-      <div>© 2026 APEX INDUSTRIAL ROBOTICS CORP. ALL RIGHTS RESERVED.</div>
-      <div style="color: var(--accent-amber);">SYSTEM STATUS: 100% OPERATIONAL // ZERO UNRESOLVED FAULTS</div>
-      <div>ENCRYPTED SECURE TELEMETRY LINK ACTIVE</div>
+    <div class="footer-bottom-bar">
+      <span>© 2026 APEX ROBOTICS CORP. ALL SPECIFICATIONS SUBJECT TO FINAL CAD INTEGRATION.</span>
+      <span>SYSTEM STATUS: OPERATIONAL</span>
     </div>
   </footer>
 
-  <!-- Scripts -->
   <script type="module" src="/src/main.js"></script>
 </body>
 </html>

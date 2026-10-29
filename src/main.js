@@ -2,11 +2,11 @@ import Lenis from 'lenis';
 import { RoboticsScene } from './scene.js';
 
 document.addEventListener('DOMContentLoaded', () => {
-  // 1. Initialize Three.js Robotics Scene
+  // 1. Initialize Studio Three.js Robotics Scene
   const canvas = document.getElementById('webgl-canvas');
   const roboticsScene = new RoboticsScene(canvas);
 
-  // 2. Preloader & Loading Animation
+  // 2. Preloader & Digital Twin Sync
   const preloader = document.getElementById('preloader');
   const loaderFill = document.getElementById('loader-fill');
   const loaderPercent = document.getElementById('loader-percent');
@@ -28,20 +28,19 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 100);
   });
 
-  // Fallback in case loading event is delayed
+  // Safety fallback
   setTimeout(() => {
     if (preloader) {
       preloader.classList.add('hidden');
       preloader.style.display = 'none';
     }
-  }, 1000);
+  }, 1200);
 
-  // 3. Initialize Lenis Smooth Scroll
+  // 3. Lenis Smooth Scroll
   const lenis = new Lenis({
     duration: 1.2,
     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
     orientation: 'vertical',
-    gestureOrientation: 'vertical',
     smoothWheel: true,
     wheelMultiplier: 1.0,
     touchMultiplier: 2.0
@@ -53,17 +52,11 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   requestAnimationFrame(raf);
 
-  // Synchronize Lenis scroll with 3D scene camera choreography
+  // Synchronize Lenis scroll with 3D scene camera waypoints
   lenis.on('scroll', (e) => {
     const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
     const progress = maxScroll > 0 ? e.scroll / maxScroll : 0;
     roboticsScene.setScrollProgress(progress);
-
-    // Dynamically modulate kinematic load indicator based on scroll velocity
-    const speed = Math.abs(e.velocity || 0);
-    const dynamicLoad = Math.min(98.5, 38.0 + speed * 12).toFixed(1);
-    const loadEl = document.getElementById('hud-load');
-    if (loadEl) loadEl.textContent = `${dynamicLoad}%`;
   });
 
   // Smooth scroll for nav anchor links
@@ -79,105 +72,92 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // 4. Real-time Telemetry Random Fluctuations (Living Industrial HUD)
-  const psiEl = document.getElementById('hud-psi');
-  const tempEl = document.getElementById('hud-temp');
-  const latencyEl = document.getElementById('hud-latency');
-
-  setInterval(() => {
-    if (psiEl) {
-      const basePsi = 3480;
-      const jitter = Math.floor(Math.random() * 24 - 12);
-      psiEl.textContent = `${(basePsi + jitter).toLocaleString()} PSI`;
+  // 4. Tool Matrix Switcher (Section 3)
+  const toolData = {
+    laser: {
+      name: '20 kW Fiber Laser Cladding Head',
+      desc: 'Continuous powder-feed laser deposition and deep-penetration structural seam joining. Active optical pyrometry adjusts power in real-time.',
+      meta1: 'Wavelength: 1,070 nm',
+      meta2: 'Duty Cycle: 100% Continuous'
+    },
+    clamp: {
+      name: '45-Ton Heavy Forging Clamp',
+      desc: 'Synchronized servo-hydraulic dual-jaw grip engineered for manipulating red-hot steel ingots and heavy castings through forging cycles.',
+      meta1: 'Clamping Force: 22,000 Nm',
+      meta2: 'Thermal Rating: 1,200°C Direct Contact'
+    },
+    plasma: {
+      name: 'High-Definition Plasma Arc Torch',
+      desc: 'Precision bevel and structural slicing of armor-grade alloy plates up to 120 mm thickness with sub-millimeter kerf width control.',
+      meta1: 'Gas Mixture: O2 / N2 Dual Gas',
+      meta2: 'Cut Speed: Up to 3.2 m/min'
+    },
+    milling: {
+      name: 'High-Torque 5-Axis Milling Spindle',
+      desc: 'High-speed finishing spindle for robotic post-weld deburring, turbine surface machining, and precision valve seat truing.',
+      meta1: 'Spindle Speed: 30,000 RPM',
+      meta2: 'Interface: HSK-A63 Direct Drive'
     }
+  };
 
-    if (tempEl) {
-      const baseTemp = 64.2;
-      const jitter = (Math.random() * 0.6 - 0.3).toFixed(1);
-      tempEl.textContent = `${(baseTemp + parseFloat(jitter)).toFixed(1)}°C [STABLE]`;
-    }
+  const toolPills = document.querySelectorAll('.tool-pill');
+  const toolNameEl = document.getElementById('tool-name');
+  const toolDescEl = document.getElementById('tool-desc');
+  const toolMetaEl = document.getElementById('tool-meta');
 
-    if (latencyEl) {
-      const baseLat = 1.18;
-      const jitter = (Math.random() * 0.08 - 0.04).toFixed(2);
-      latencyEl.textContent = `${(baseLat + parseFloat(jitter)).toFixed(2)} ms`;
-    }
-  }, 1800);
+  toolPills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      toolPills.forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
 
-  // 5. Interactive Tool Switcher (Section 3)
-  const toolButtons = document.querySelectorAll('.tool-option-btn');
-  toolButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      toolButtons.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-
-      const toolType = btn.dataset.tool;
-      // Trigger camera adjustment or spark focus based on chosen tool
-      if (toolType === 'laser') {
-        roboticsScene.focusOnHotspot('hs-hand');
-      } else if (toolType === 'gripper') {
-        roboticsScene.focusOnHotspot('hs-hand');
-      } else if (toolType === 'plasma') {
-        roboticsScene.focusOnHotspot('hs-arm');
-      } else if (toolType === 'milling') {
-        roboticsScene.focusOnHotspot('hs-hand');
+      const data = toolData[pill.dataset.tool];
+      if (data && toolNameEl && toolDescEl && toolMetaEl) {
+        toolNameEl.textContent = data.name;
+        toolDescEl.textContent = data.desc;
+        toolMetaEl.innerHTML = `<span>${data.meta1}</span><span>${data.meta2}</span>`;
       }
     });
   });
 
-  // 6. Interactive 3D Hotspot Clicks
-  const hotspotElements = document.querySelectorAll('.hotspot-marker');
-  hotspotElements.forEach(hsEl => {
-    hsEl.addEventListener('click', () => {
-      roboticsScene.focusOnHotspot(hsEl.id);
-    });
-  });
-
-  // 7. Interactive Configurator Logic
+  // 5. Hardware Deployment Configurator (Section 6)
   const basePrice = 1250000;
-  const configState = {
-    chassis: { name: 'Foundry Heavy Pad', price: 0, time: 0 },
-    tool: { name: '20 kW Laser Cladding', price: 220000, time: 1 },
-    ai: { name: 'Dual Orin + Solid-State LiDAR', price: 120000, time: 1 },
-    service: { name: 'Enterprise 3-Yr SLA', price: 50000, time: 0 }
+  const config = {
+    chassis: { name: 'Foundry Pad (Static)', price: 0, time: 0 },
+    tool: { name: '20 kW Fiber Laser', price: 220000, time: 1 },
+    ai: { name: 'Dual Jetson AGX Orin + LiDAR', price: 120000, time: 1 }
   };
 
   function updateConfigSummary() {
-    const total = basePrice + configState.chassis.price + configState.tool.price + configState.ai.price + configState.service.price;
-    const baseLeadTime = 10;
-    const totalTime = baseLeadTime + configState.chassis.time + configState.tool.time + configState.ai.time;
+    const total = basePrice + config.chassis.price + config.tool.price + config.ai.price;
+    const leadTime = 9 + config.chassis.time + config.tool.time + config.ai.time;
 
-    const summaryChassis = document.getElementById('summary-chassis');
-    const summaryTool = document.getElementById('summary-tool');
-    const summaryAi = document.getElementById('summary-ai');
-    const summaryTime = document.getElementById('summary-time');
-    const summaryTotal = document.getElementById('summary-total');
+    const sumChassis = document.getElementById('sum-chassis');
+    const sumTool = document.getElementById('sum-tool');
+    const sumAi = document.getElementById('sum-ai');
+    const sumTime = document.getElementById('sum-time');
+    const sumTotal = document.getElementById('sum-total');
 
-    if (summaryChassis) summaryChassis.textContent = configState.chassis.name;
-    if (summaryTool) summaryTool.textContent = configState.tool.name;
-    if (summaryAi) summaryAi.textContent = configState.ai.name;
-    if (summaryTime) summaryTime.textContent = `${totalTime} WEEKS`;
-    if (summaryTotal) summaryTotal.textContent = `$${total.toLocaleString()}`;
+    if (sumChassis) sumChassis.textContent = config.chassis.name;
+    if (sumTool) sumTool.textContent = config.tool.name;
+    if (sumAi) sumAi.textContent = config.ai.name;
+    if (sumTime) sumTime.textContent = `${leadTime} Weeks`;
+    if (sumTotal) sumTotal.textContent = `$${total.toLocaleString()}`;
   }
 
-  function bindConfigGroup(groupId, stateKey, nameMap) {
-    const container = document.getElementById(groupId);
+  function bindOptionGroup(containerId, configKey) {
+    const container = document.getElementById(containerId);
     if (!container) return;
-    const pills = container.querySelectorAll('.config-pill');
+    const buttons = container.querySelectorAll('.opt-btn');
 
-    pills.forEach(pill => {
-      pill.addEventListener('click', () => {
-        pills.forEach(p => p.classList.remove('active'));
-        pill.classList.add('active');
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        buttons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
 
-        const val = pill.dataset.val;
-        const price = parseInt(pill.dataset.price || '0', 10);
-        const time = parseInt(pill.dataset.time || '0', 10);
-
-        configState[stateKey] = {
-          name: nameMap[val] || pill.textContent.trim(),
-          price,
-          time
+        config[configKey] = {
+          name: btn.textContent.trim(),
+          price: parseInt(btn.dataset.price || '0', 10),
+          time: parseInt(btn.dataset.time || '0', 10)
         };
 
         updateConfigSummary();
@@ -185,40 +165,20 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  bindConfigGroup('cfg-chassis', 'chassis', {
-    static: 'Foundry Heavy Pad (Static)',
-    rail: 'Linear Gantry Rail (+18m)',
-    tracked: 'Heavy Tracked AGV Base'
-  });
-
-  bindConfigGroup('cfg-tool', 'tool', {
-    laser: '20 kW Fiber Laser Weld Head',
-    clamp: '45-Ton Forging Clamp',
-    hybrid: 'Dual Laser + Clamp Hybrid'
-  });
-
-  bindConfigGroup('cfg-ai', 'ai', {
-    orin: 'Dual NVIDIA Isaac Orin + LiDAR',
-    swarm: 'Orin + Aerial Drone Scout Link'
-  });
-
-  bindConfigGroup('cfg-service', 'service', {
-    standard: 'Enterprise 3-Yr SLA (4h Repair)',
-    critical: 'Mission Critical 5-Yr Unlimited'
-  });
-
+  bindOptionGroup('opt-chassis', 'chassis');
+  bindOptionGroup('opt-tool', 'tool');
+  bindOptionGroup('opt-ai', 'ai');
   updateConfigSummary();
 
-  // 8. Form Submission Feedback
-  const form = document.getElementById('deployment-form');
-  const feedback = document.getElementById('form-feedback');
+  // 6. Engineering Requisition Form
+  const form = document.getElementById('pilot-form');
+  const successEl = document.getElementById('form-success');
 
   if (form) {
     form.addEventListener('submit', (e) => {
       e.preventDefault();
-      if (feedback) {
-        feedback.style.display = 'block';
-        feedback.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      if (successEl) {
+        successEl.style.display = 'block';
       }
       form.reset();
     });
